@@ -19,6 +19,9 @@ COPY etc/server.cfg "/etc/server.cfg"
 COPY etc/pre.sh "/etc/pre.sh"
 COPY etc/post.sh "/etc/post.sh"
 
+COPY etc/plugins.json "/etc/plugins.json"
+COPY etc/install.sh "/etc/install.sh"
+
 RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \

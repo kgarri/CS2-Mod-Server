@@ -21,13 +21,7 @@ mkdir -p ~/.steam/sdk64
 ln -sfT ${STEAMCMDDIR}/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 
 # Install server.cfg
-cp /etc/server.cfg "${STEAMAPPDIR}"/game/csgo/gameinfo.gi
-
-# Editing <<<WORK IN PROGRESS>>>
-#"${STEAMAPPDIR}"/game/csgo/cfg/server.cfg
-
-# Install Metamod and CounterStrikeSharp <<<WORK IN PROGRESS>>>
-
+cp /etc/server.cfg "${STEAMAPPDIR}"/game/csgo/cfg/server.cfg
 
 # Install hooks if they don't already exist
 if [[ ! -f "${STEAMAPPDIR}/pre.sh" ]] ; then
@@ -42,6 +36,9 @@ if [[ ! -z $CS2_CFG_URL ]]; then
     echo "Downloading config pack from ${CS2_CFG_URL}"
     wget -qO- "${CS2_CFG_URL}" | tar xvzf - -C "${STEAMAPPDIR}"
 fi
+
+# Rewrite Gameinfo File
+sed -i "/Game[[:space:]]core/a  \\\t\t\tGame\tcsgo/addons/metamod" "${STEAMAPPDIR}/game/csgo/gameinfo.gi"
 
 # Rewrite Config Files
 
@@ -72,6 +69,11 @@ fi
 if [[ ! -z $CS2_BOT_QUOTA_MODE ]] ; then
     sed -i "s/bot_quota_mode.*/bot_quota_mode ${CS2_BOT_QUOTA_MODE}/" "${STEAMAPPDIR}"/game/csgo/cfg/*
 fi
+
+# Install Plugins and Tools
+echo "START INSTALL"
+source /etc/install.sh
+echo "END INSTALL"
 
 # Switch to server directory
 cd "${STEAMAPPDIR}/game/bin/linuxsteamrt64"
