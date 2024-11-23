@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      target: base
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+      - "27020:27020/udp"
+    volumes:
+      - game_data:/home/steam/cs2-dedicated  # Mounts the server files directory to the volume
+
+volumes:
+  game_data:
+    driver: local  # Persists data locally

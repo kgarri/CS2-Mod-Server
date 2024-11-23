@@ -128,6 +128,7 @@ echo "Starting CS2 Dedicated Server"
 eval "./cs2" -dedicated \
         "${CS2_IP_ARGS}" -port "${CS2_PORT}" \
         -console \
+        -insecure \
         -usercon \
         -maxplayers "${CS2_MAXPLAYERS}" \
         "${CS2_GAME_MODE_ARGS}" \
