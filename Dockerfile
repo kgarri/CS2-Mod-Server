@@ -5,7 +5,7 @@
 ###########################################################
 
 # BUILD STAGE
-FROM cm2network/steamcmd:root as build
+FROM cm2network/steamcmd:root AS build
 
 LABEL maintainer="tompkinsjohn04@gmail.com"
 
@@ -21,6 +21,7 @@ COPY etc/post.sh "/etc/post.sh"
 
 COPY etc/plugins.json "/etc/plugins.json"
 COPY etc/install.sh "/etc/install.sh"
+COPY docker-compose.yaml "docker-compose.yaml"
 
 RUN set -x \
 	# Install, update & upgrade packages
@@ -52,9 +53,8 @@ ENV CS2_SERVERNAME="Research" \
     CS2_PORT=27015 \
     CS2_RCON_PORT="" \
     CS2_MAXPLAYERS=10 \
-    CS2_RCONPW="RCONPW" \
-    CS2_MAPGROUP="mg_active" \    
-    CS2_STARTMAP="de_dust2" \
+    CS2_RCONPW="RCONPW" \  
+    CS2_MAP="de_dust2" \
     CS2_GAMEALIAS="" \
     CS2_GAMETYPE=0 \
     CS2_GAMEMODE=1 \
