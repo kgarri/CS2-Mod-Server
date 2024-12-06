@@ -104,16 +104,22 @@ fi
 # Start Server
 
 if [[ ! -z $CS2_RCON_PORT ]]; then
-    echo "Establishing Simpleproxy for ${CS2_RCON_PORT} to 127.0.0.1:${CS2_PORT}"
-    simpleproxy -L "${CS2_RCON_PORT}" -R 127.0.0.1:"${CS2_PORT}" &
+    echo "Establishing Simpleproxy for ${CS2_RCON_PORT} to 0.0.0.0:${CS2_PORT}"
+    simpleproxy -L "${CS2_RCON_PORT}" -R 0.0.0.0:"${CS2_PORT}" &
 fi
 
+# Debug input/output redirection
+exec 0<&0
+exec 1>&1
+exec 2>&2
+
 echo "Starting CS2 Dedicated Server"
-eval "./cs2" -dedicated \
+exec "./cs2" -dedicated \
         "${CS2_IP_ARGS}" -port "${CS2_PORT}" \
         -console \
         -insecure \
         -usercon \
+        +login anonymous \
         -maxplayers "${CS2_MAXPLAYERS}" \
         "${CS2_GAME_MODE_ARGS}" \
         +map "${CS2_MAP}" \

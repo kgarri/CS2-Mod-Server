@@ -1,14 +1,11 @@
 services:
-  app:
-    build:
-      context: .
-      target: base
-    ports:
-      - "27015:27015/tcp"
-      - "27015:27015/udp"
-      - "27020:27020/udp"
-
-  cs2:
-    image: cm2network/csgo
-    stdin_open: true
-    tty: true
+  cs2-server:
+      image: cm2network/cs2
+      container_name: cs2-mod-server
+      ports:
+        - "27015:27015/tcp"           # Main game TCP port
+        - "27015:27015/udp"           # Main game UDP port
+        - "27020:27020/udp"           # Game streaming (TV) UDP port
+      stdin_open: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
+      tty: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
+      network_mode: "host"

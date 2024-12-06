@@ -46,14 +46,15 @@ RUN set -x \
 
 FROM build AS base
 
+# CONFIGURE SERVER SETTINGS HERE
 ENV CS2_SERVERNAME="Research" \
     CS2_CHEATS=1 \
     CS2_IP=0.0.0.0 \
     CS2_SERVER_HIBERNATE=0 \
     CS2_PORT=27015 \
-    CS2_RCON_PORT="" \
+    CS2_RCON_PORT='' \
     CS2_MAXPLAYERS=10 \
-    CS2_RCONPW="RCONPW" \  
+    CS2_RCONPW="RVP" \ 
     CS2_MAP="de_dust2" \
     CS2_GAMEALIAS="" \
     CS2_GAMETYPE=0 \
@@ -90,4 +91,4 @@ CMD ["bash", "entry.sh"]
 # Expose ports
 EXPOSE 27015/tcp \
 	27015/udp \
-	27020/udp
+	27020/udp \
