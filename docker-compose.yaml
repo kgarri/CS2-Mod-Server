@@ -6,6 +6,14 @@ services:
         - "27015:27015/tcp"           # Main game TCP port
         - "27015:27015/udp"           # Main game UDP port
         - "27020:27020/udp"           # Game streaming (TV) UDP port
+
+      volumes:
+        - cs2:/home/steam/cs2-dedicated/  # Persistent data volume mount point inside container
+
       stdin_open: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
       tty: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
-      network_mode: "host"
+      #network_mode: "host"
+
+volumes:
+  cs2:
+    name: cs2

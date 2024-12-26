@@ -54,21 +54,15 @@ sed -i -e "s/{{SERVER_HOSTNAME}}/${CS2_SERVERNAME}/g" \
        -e "s/{{TV_RELAY_PW}}/${TV_RELAY_PW}/g" \
        -e "s/{{TV_MAXRATE}}/${TV_MAXRATE}/g" \
        -e "s/{{TV_DELAY}}/${TV_DELAY}/g" \
+       -e "s/{{BOT_DIFFICULTY}}/${BOT_DIFFICULTY}/g" \
+       -e "s/{{BOT_QUOTA}}/${BOT_QUOTA}/g" \
+       -e "s/{{BOT_QUOTA_MODE}}/${BOT_QUOTA_MODE}/g" \
        -e "s/{{SERVER_LOG}}/${CS2_LOG}/g" \
        -e "s/{{SERVER_LOG_MONEY}}/${CS2_LOG_MONEY}/g" \
        -e "s/{{SERVER_LOG_DETAIL}}/${CS2_LOG_DETAIL}/g" \
        -e "s/{{SERVER_LOG_ITEMS}}/${CS2_LOG_ITEMS}/g" \
+       -e "s/{{SERVER_LOG_LOADOUTS}}/${CS2_LOG_LOADOUTS}/g" \
        "${STEAMAPPDIR}"/game/csgo/cfg/server.cfg
-
-if [[ ! -z $CS2_BOT_DIFFICULTY ]] ; then
-    sed -i "s/bot_difficulty.*/bot_difficulty ${CS2_BOT_DIFFICULTY}/" "${STEAMAPPDIR}"/game/csgo/cfg/*
-fi
-if [[ ! -z $CS2_BOT_QUOTA ]] ; then
-    sed -i "s/bot_quota.*/bot_quota ${CS2_BOT_QUOTA}/" "${STEAMAPPDIR}"/game/csgo/cfg/*
-fi
-if [[ ! -z $CS2_BOT_QUOTA_MODE ]] ; then
-    sed -i "s/bot_quota_mode.*/bot_quota_mode ${CS2_BOT_QUOTA_MODE}/" "${STEAMAPPDIR}"/game/csgo/cfg/*
-fi
 
 # Install Plugins and Tools
 echo "START INSTALL"
@@ -108,10 +102,12 @@ if [[ ! -z $CS2_RCON_PORT ]]; then
     simpleproxy -L "${CS2_RCON_PORT}" -R 0.0.0.0:"${CS2_PORT}" &
 fi
 
-# Debug input/output redirection
-exec 0<&0
-exec 1>&1
-exec 2>&2
+# hacky error fix
+mkdir -p ${STEAM_DIR}/.steam/sdk32
+mkdir -p ${STEAM_DIR}/.steam/sdk64
+
+cp ${STEAMCMD_DIR}/linux32/steamclient.so ${STEAM_DIR}/.steam/sdk32/steamclient.so
+cp ${STEAMCMD_DIR}/linux64/steamclient.so ${STEAM_DIR}/.steam/sdk64/steamclient.
 
 echo "Starting CS2 Dedicated Server"
 exec "./cs2" -dedicated \
