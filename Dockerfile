@@ -5,7 +5,7 @@
 ###########################################################
 
 # BUILD STAGE
-FROM cm2network/steamcmd:root-bookworm AS build
+FROM cm2network/steamcmd:root AS build
 
 LABEL maintainer="tompkinsjohn04@gmail.com"
 
@@ -35,7 +35,7 @@ RUN set -x \
                 unzip \
 		jq \
 	&& mkdir -p "${STEAMAPPDIR}" \
-	# Add start script
+	# Add entry script
 	&& chmod +x "${HOMEDIR}/entry.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
 	# Clean up
@@ -46,19 +46,19 @@ RUN set -x \
 
 FROM build AS base
 
-# !!!CONFIGURE SERVER SETTINGS HERE!!!
+# CONFIGURE SERVER SETTINGS HERE
 ENV CS2_SERVERNAME="Research" \
     CS2_CHEATS=1 \
     CS2_IP=0.0.0.0 \
     CS2_SERVER_HIBERNATE=0 \
     CS2_PORT=27015 \
     CS2_RCON_PORT='' \
-    CS2_RCONPW="RVP" \
     CS2_MAXPLAYERS=10 \
+    CS2_RCONPW="RVP" \ 
     CS2_MAP="de_dust2" \
     CS2_GAMEALIAS="" \
     CS2_GAMETYPE=0 \
-    CS2_GAMEMODE=0 \
+    CS2_GAMEMODE=1 \
     CS2_LAN=0 \
     TV_AUTORECORD=0 \
     TV_ENABLE=0 \
@@ -67,32 +67,28 @@ ENV CS2_SERVERNAME="Research" \
     TV_RELAY_PW="TVRPW" \
     TV_MAXRATE=0 \
     TV_DELAY=0 \
-    BOT_DIFFICULTY=3 \
-    BOT_QUOTA=10 \
-    BOT_QUOTA_MODE="normal" \
     SRCDS_TOKEN="DB8B4AFD4D55E2D7F7B1A83A2AA7E9EF" \
-    CS2_LOG="off" \
+    CS2_CFG_URL="" \
+    CS2_LOG="on" \
     CS2_LOG_MONEY=0 \
     CS2_LOG_DETAIL=0 \
     CS2_LOG_ITEMS=0 \
-    CS2_LOG_LOADOUTS=0 \
     CS2_ADDITIONAL_ARGS=""
 
-
-# Permissions may need to be reset if persistent volume mounted
+# Set permissions on STEAMAPPDIR
+#   Permissions may need to be reset if persistent volume mounted
 RUN set -x \
         && chown -R "${USER}:${USER}" "${STEAMAPPDIR}" \
-        && chmod 0777 "${STEAMAPPDIR}" 
+        && chmod 0777 "${STEAMAPPDIR}"
 
 # Switch to user
 USER ${USER}
 
 WORKDIR ${HOMEDIR}
 
-# Setup for server starting
-CMD ["/bin/bash", "entry.sh"]
+CMD ["bash", "entry.sh"]
 
 # Expose ports
 EXPOSE 27015/tcp \
 	27015/udp \
-	27020/udp 
+	27020/udp \
