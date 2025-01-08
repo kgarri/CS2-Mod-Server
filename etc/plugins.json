@@ -5,7 +5,7 @@
         "TYPE": "gz"
     },
     {
-        "URL": "https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v291/counterstrikesharp-with-runtime-build-291-linux-6349c11.zip",
+        "URL": "https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v290/counterstrikesharp-with-runtime-build-290-linux-7929751.zip",
         "DESTINATION": "cs2-dedicated/game/csgo",
         "TYPE": "zip"
     },
@@ -14,5 +14,4 @@
         "DESTINATION": "cs2-dedicated/game/csgo/addons/counterstrikesharp",
         "TYPE": "gz"
     }
-    
 ]
