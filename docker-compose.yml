@@ -1,0 +1,13 @@
+services:
+  cs2-server:
+      image: cm2network/cs2
+      container_name: cs2-mod-server
+      ports:
+        - "27015:27015/tcp"           # Main game TCP port
+        - "27015:27015/udp"           # Main game UDP port
+        - "27020:27020/udp"           # Game streaming (TV) UDP port
+        - "27050:27050/tcp"           # Rcon TCP port
+
+      stdin_open: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
+      tty: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-mod-server
+      network_mode: "host"

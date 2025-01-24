@@ -5,7 +5,7 @@
 ###########################################################
 
 # BUILD STAGE
-FROM cm2network/steamcmd:root AS build
+FROM cm2network/steamcmd:root as build
 
 LABEL maintainer="tompkinsjohn04@gmail.com"
 
@@ -21,7 +21,7 @@ COPY etc/post.sh "/etc/post.sh"
 
 COPY etc/plugins.json "/etc/plugins.json"
 COPY etc/install.sh "/etc/install.sh"
-COPY docker-compose.yaml "docker-compose.yaml"
+COPY docker-compose.yml "docker-compose.yml"
 
 RUN set -x \
 	# Install, update & upgrade packages
@@ -46,33 +46,20 @@ RUN set -x \
 
 FROM build AS base
 
-ENV CS2_SERVERNAME="Research" \
-    CS2_CHEATS=1 \
-    CS2_IP=0.0.0.0 \
-    CS2_SERVER_HIBERNATE=0 \
-    CS2_PORT=27015 \
-    CS2_RCON_PORT="" \
-    CS2_MAXPLAYERS=10 \
-    CS2_RCONPW="RCONPW" \  
-    CS2_MAP="de_dust2" \
-    CS2_GAMEALIAS="" \
-    CS2_GAMETYPE=0 \
-    CS2_GAMEMODE=1 \
-    CS2_LAN=0 \
-    TV_AUTORECORD=0 \
-    TV_ENABLE=0 \
-    TV_PORT=27020 \
-    TV_PW="TVPW" \
-    TV_RELAY_PW="TVRPW" \
-    TV_MAXRATE=0 \
-    TV_DELAY=0 \
+# variables used in entry.sh to create the server
+# other variables are in the server.cfg
+ENV IP=0.0.0.0 \
+    PORT=27015 \
+    RCON_PORT=27050 \
+    MAXPLAYERS=10 \
+    MAP="de_dust2" \
+    GAMEALIAS="" \
+    GAMETYPE=0 \
+    GAMEMODE=1 \
+    LAN=0 \
     SRCDS_TOKEN="DB8B4AFD4D55E2D7F7B1A83A2AA7E9EF" \
-    CS2_CFG_URL="" \
-    CS2_LOG="on" \
-    CS2_LOG_MONEY=0 \
-    CS2_LOG_DETAIL=0 \
-    CS2_LOG_ITEMS=0 \
-    CS2_ADDITIONAL_ARGS=""
+    CFG_URL="" \
+    ADDITIONAL_ARGS=""
 
 # Set permissions on STEAMAPPDIR
 #   Permissions may need to be reset if persistent volume mounted
@@ -90,4 +77,5 @@ CMD ["bash", "entry.sh"]
 # Expose ports
 EXPOSE 27015/tcp \
 	27015/udp \
-	27020/udp
+	27020/udp \ 
+        27050/tcp
