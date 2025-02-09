@@ -41,11 +41,6 @@ fi
 sed -i "/Game[[:space:]]core/a  \\\t\t\tGame\tcsgo/addons/metamod" "${STEAMAPPDIR}/game/csgo/gameinfo.gi"
 sed -i "${STEAMAPPDIR}"/game/csgo/cfg/server.cfg
 
-# Install Plugins and Tools
-echo "START INSTALL"
-source /etc/install.sh
-echo "END INSTALL"
-
 # Switch to server directory
 cd "${STEAMAPPDIR}/game/bin/linuxsteamrt64"
 

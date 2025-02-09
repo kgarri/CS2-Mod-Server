@@ -18,9 +18,6 @@ COPY etc/entry.sh "${HOMEDIR}/entry.sh"
 COPY etc/server.cfg "/etc/server.cfg"
 COPY etc/pre.sh "/etc/pre.sh"
 COPY etc/post.sh "/etc/post.sh"
-
-COPY etc/plugins.json "/etc/plugins.json"
-COPY etc/install.sh "/etc/install.sh"
 COPY docker-compose.yml "docker-compose.yml"
 
 RUN set -x \
@@ -76,6 +73,7 @@ CMD ["bash", "entry.sh"]
 
 # Expose ports
 EXPOSE 27015/tcp \
-	27015/udp \
-	27020/udp \ 
-        27050/tcp
+       27015/udp \
+       27020/udp \ 
+       27050/tcp
+
