@@ -1,8 +1,19 @@
-"etc" is a folder contains many scripts that will run when creating the docker with the goal of creating the docker and the server.
-    entry.sh: the main file creating the server and starting up the server and other files to get cs2   properly working
+##Setup
+For the  setup you need to first make the base cs2-server image using the following command -
+```
+cd cs2_base_image
+docker build . -t base-cs2-image```
+Afterwards you will execute the following commands to build the modded server image.
+```
+cd cs2_main_image
+docker build . -t cs2-mod-server
+```
+Then you can excute this command to start the server - 
+```
+docker run --name <server-name> --net=host -it --mount type=bind, source="<path to steamcmd>", target="/home/steam/steamcmd"
+--mount type=bind, source="<path to Steam direcotry with CS2 in it>", target="/home/steam/Steam"
+cs2-mod-server "<username> <steamid>" 
+```
 
-    install: installs the addons and plugins from the plugins.json folder, organizing and placing the folders in the correct places
+You can add as many users to the admin group as long as you repeat the end pattern "<username> <steamid>". 
 
-    plugins.json: holds the directories of many addons and plugins found online to download and then be put into the cs2 server.
-
-    server.cfg: holds all other server configuration that are not inside entry.sh when creating the server, more can be added or removed.
