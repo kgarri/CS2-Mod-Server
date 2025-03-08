@@ -1,7 +1,7 @@
 #Get Base image from the existing base cs2 image
 FROM base-cs2-image
 SHELL ["/bin/bash", "-c"]
-COPY ["./setup.sh", "/home/steam/"]
+COPY ["setup.sh", "/home/steam/"]
 USER root
 RUN apt update && \
 apt install -y unzip unar && \
