@@ -21,5 +21,5 @@ unar -o addons/counterstrikesharp/plugins/ ESP.rar && \
 rm ESP.rar && \
 rm counter-sharp.zip
 
-ENTRYPOINT ["/home/steam/setup.sh"]
+ENTRYPOINT ["bash", "/home/steam/setup.sh"]
 
