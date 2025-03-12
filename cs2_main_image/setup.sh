@@ -1,6 +1,6 @@
 #!/bin/bash
-CSGO_STRING="Counter-Strike Global Offensive" 
-CSGO_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game/csgo" 
+CSGO_STRING="Counter-Strike Global Offensive"
+CSGO_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game/csgo"
 SERVER_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game/bin/linuxsteamrt64"
 ADMINS_JSON="$CSGO_DIR/addons/counterstrikesharp/configs/admins.json"
 rm -r "$CSGO_DIR/addons" || true
