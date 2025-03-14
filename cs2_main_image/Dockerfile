@@ -22,7 +22,11 @@ rm counter-sharp.zip && \
 #DiscordReport
 curl -L https://github.com/SUBERNER/cs2-simple-discord-report/releases/download/Working/ReportDcPlugin.zip --output  ReportDcPlugin.zip && \
 unzip ReportDcPlugin.zip -d addons/counterstrikesharp/plugins/ && \
-rm ReportDcPlugin.zip
+rm ReportDcPlugin.zip && \
+#Admin ESP plugin  
+curl -L https://github.com/kgarri/bg-koka-cs2-xray-esp/releases/download/latest/AdminESP.tar.gz --output ESP.tar.gz && \
+tar -xzvf ESP.tar.gz -C addons/counterstrikesharp/plugins/ && \
+rm ESP.tar.gz
 
 
 ENTRYPOINT ["bash", "/home/steam/setup.sh"]
