@@ -18,15 +18,12 @@ rm mmsource.tar.gz && \
 #CounterStrikeSharp
 curl -L https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v305/counterstrikesharp-with-runtime-build-305-linux-e99d27c.zip --output counter-sharp.zip && \
 unzip counter-sharp.zip && \
-#AdminESP
-curl -L https://github.com/aquevadis/bg-koka-cs2-xray-esp/releases/download/1.0.9/AdminESP.rar --output ESP.rar && \
-unar -o addons/counterstrikesharp/plugins/ ESP.rar && \
-rm ESP.rar && \
 rm counter-sharp.zip && \
 #DiscordReport
 curl -L https://github.com/SUBERNER/cs2-simple-discord-report/releases/download/Working/ReportDcPlugin.zip --output  ReportDcPlugin.zip && \
 unzip ReportDcPlugin.zip -d addons/counterstrikesharp/plugins/ && \
 rm ReportDcPlugin.zip
+
 
 ENTRYPOINT ["bash", "/home/steam/setup.sh"]
 

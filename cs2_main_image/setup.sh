@@ -20,6 +20,7 @@ for arg in "$@"; do
 done 
 echo "}" >> "$ADMINS_JSON" 
 
+
 metamod=$(cat "$CSGO_DIR/gameinfo.gi" | grep -oh metamod | wc -w)
 echo "Checking metamod installation status: $metamod"
 
