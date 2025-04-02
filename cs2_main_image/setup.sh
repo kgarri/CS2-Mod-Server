@@ -7,7 +7,8 @@ CFG_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game/csgo/cfg"
 ADMINS_JSON="$CSGO_DIR/addons/counterstrikesharp/configs/admins.json"
 rm -r "$CSGO_DIR/addons" || true
 cp -r "/home/steam/download/addons" "$CSGO_DIR"
-
+cp "/home/steam/autoexec.cfg" "$CFG_DIR/"
+cp "/home/steam/server.cfg"   "$CFG_DIR/"
 
 echo "{" >> "$ADMINS_JSON"  
 declare -i iter=1
@@ -35,6 +36,6 @@ else
 	sed -ie '/Game_LowViolence/a\\n\t\t\tGame    csgo/addons/metamod' "$CSGO_DIR/gameinfo.gi"
 fi
 
-"$SERVER_DIR/cs2" -dedicated -insecure -autoupdate -port 27015 +map de_dust2
+"$SERVER_DIR/cs2" +exec autoexec.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2
 
 
