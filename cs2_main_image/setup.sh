@@ -36,6 +36,6 @@ else
 	sed -ie '/Game_LowViolence/a\\n\t\t\tGame    csgo/addons/metamod' "$CSGO_DIR/gameinfo.gi"
 fi
 
-"$SERVER_DIR/cs2" +exec autoexec.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2
+"$SERVER_DIR/cs2" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2
 
 
