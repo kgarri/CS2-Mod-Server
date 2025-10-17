@@ -1,0 +1,16 @@
+services: 
+  cs2-mod-server: 
+    build: . 
+    image: cs2-mod-server
+    stdin_open: true
+    container_name: cs2-server
+    tty: true
+    network_mode: "host"
+    ports:
+      - 27015:27015
+      - 27020:27020
+    volumes:
+      - /home/kat/.steam/steamcmd:/home/steam/steamcmd
+      - /home/kat/.local/share/Steam:/home/steam/Steam
+      
+

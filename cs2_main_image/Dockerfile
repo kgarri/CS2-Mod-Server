@@ -4,6 +4,7 @@ SHELL ["/bin/bash", "-c"]
 COPY ["setup.sh", "/home/steam/"]
 COPY ["autoexec.cfg", "/home/steam"]
 COPY ["server.cfg", "/home/steam"]
+COPY ["admins.conf", "/home/steam"]
 USER root
 RUN apt update && \
 apt install -y unzip unar && \
@@ -16,11 +17,11 @@ USER steam
 RUN mkdir /home/steam/download && \
 cd /home/steam/download && \
 #MetaMod
-curl -L https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1334-linux.tar.gz --output mmsource.tar.gz && \
+curl -L https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-linux.tar.gz --output mmsource.tar.gz && \
 tar -xzvf mmsource.tar.gz && \
 rm mmsource.tar.gz && \
 #CounterStrikeSharp
-curl -L https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v305/counterstrikesharp-with-runtime-build-305-linux-e99d27c.zip --output counter-sharp.zip && \
+curl -L https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-linux-1.0.340.zip --output counter-sharp.zip && \
 unzip counter-sharp.zip && \
 rm counter-sharp.zip && \
 #DiscordReport
