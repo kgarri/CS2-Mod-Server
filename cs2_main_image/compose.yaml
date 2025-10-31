@@ -10,7 +10,7 @@ services:
       - 27015:27015
       - 27020:27020
     volumes:
-      - /home/kat/.steam/steamcmd:/home/steam/steamcmd
-      - /home/kat/.local/share/Steam:/home/steam/Steam
+      - /path/to/steamcmd:/home/steam/steamcmd
+      - /path/to/Steam:/home/steam/Steam
       
 
