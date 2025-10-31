@@ -42,20 +42,7 @@ else
 	sed -ie '/Game_LowViolence/a\\n\t\t\tGame    csgo/addons/metamod' "$CSGO_DIR/gameinfo.gi"
 fi
 
-#dedicated=$(cat "$LAUNCH_DIR/cs2.sh" | grep -oh '[[ "$*" == *"-dedicated"* ]] && DEDICATED_SERVER=1 || DEDICATED_SERVER=0'| wc -w)
-#echo "Checking to see if the cs2.sh is configured to launch dedicated servers without the Steam Linux Sniper Runtime"
 
-#if [[ $dedicated -eq 1 ]]
-#then 
- #   echo "cs2.sh properly configured"
-#else 
-#    echo "Configuring cs2.sh"
-#	sed -ie '/SCRIPTNAME=$(basename $0)/a\[[ "$*" == *"-dedicated"* ]] && DEDICATED_SERVER=1 || DEDICATED_SERVER=0' "$LAUNCH_DIR/cs2.sh"
-#	sed -ie '/[ "\$VERSION_CODENAME" != "sniper" \]/[ "$DEDICATED_SERVER" == "0" ] && \[ "$VERSION_CODENAME" != "sniper" ]' "$LAUNCH_DIR/cs2.sh"
-#fi
-
-
-
-"$LAUNCH_DIR/cs2.sh" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2 +game_alias wingman | sed 's/(null)//g'
+"$LAUNCH_DIR/cs2.she" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2 +game_alias wingman | sed 's/(null)//g'
 
 
