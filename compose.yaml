@@ -1,0 +1,29 @@
+services: 
+  cs2-base: 
+      build: ./cs2_base_image
+      image: base-cs2-image
+      container_name: cs2-base
+      restart: no
+      volumes:
+        - steamcmd_volume:/home/steam/steamcmd
+        - steamcmd_login_volume:/home/steam/Steam
+
+  cs2-mod-server: 
+    build: ./cs2_main_image 
+    image: cs2-mod-server
+    stdin_open: true
+    container_name: cs2-server
+    depends_on:
+      - cs2-base
+    tty: true
+    network_mode: "host"
+    volumes:
+        - steamcmd_volume:/home/steam/steamcmd
+        - steamcmd_login_volume:/home/steam/Steam
+    entrypoint: ["bash"]
+      
+volumes:
+  steamcmd_volume:
+    driver: local
+  steamcmd_login_volume:
+    driver: local

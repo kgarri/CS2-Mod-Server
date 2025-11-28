@@ -1,4 +1,15 @@
 #!/bin/bash
+# Wait for cs2-base to finish its steamcmd run by checking for the marker
+echo "cs2-mod-server: waiting for cs2-base completion marker..."
+while [ ! -f /home/steam/steamcmd/.cs2_base_done ]; do
+    sleep 2
+done
+
+echo "cs2-mod-server: detected cs2-base completion marker. Continuing startup."
+echo "cs2-mod-server: removing cs2-base completion marker."
+rm /home/steam/steamcmd/.cs2_base_done
+
+
 CSGO_STRING="Counter-Strike Global Offensive"
 LAUNCH_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game"
 CSGO_DIR="/home/steam/Steam/steamapps/common/$CSGO_STRING/game/csgo"
@@ -43,6 +54,6 @@ else
 fi
 
 
-"$LAUNCH_DIR/cs2.she" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2 +game_alias wingman | sed 's/(null)//g'
+"$LAUNCH_DIR/cs2.sh" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2 +game_alias wingman
 
 
