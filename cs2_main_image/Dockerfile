@@ -5,11 +5,15 @@ COPY ["setup.sh", "/home/steam/"]
 COPY ["autoexec.cfg", "/home/steam"]
 COPY ["server.cfg", "/home/steam"]
 COPY ["admins.conf", "/home/steam"]
+COPY ["update_cs2.sh", "/home/steam"]
+COPY ["start_cs2.sh", "/home/steam"]
 USER root
 RUN apt update && \
 apt install -y unzip unar && \
 chown steam /home/steam/setup.sh && \
 chmod +x /home/steam/setup.sh && \  
+chmod +x /home/steam/update_cs2.sh && \  
+chmod +x /home/steam/start_cs2.sh && \  
 chown steam /home/steam/autoexec.cfg && \
 chown steam /home/steam/server.cfg 
 
