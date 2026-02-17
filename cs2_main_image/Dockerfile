@@ -10,6 +10,7 @@ COPY ["start_cs2.sh", "/home/steam"]
 USER root
 RUN apt update && \
 apt install -y unzip unar && \
+apt install -y prelink && \
 chown steam /home/steam/setup.sh && \
 chmod +x /home/steam/setup.sh && \  
 chmod +x /home/steam/update_cs2.sh && \  
@@ -33,7 +34,7 @@ curl -L https://github.com/SUBERNER/cs2-simple-discord-report/releases/download/
 unzip ReportDcPlugin.zip -d addons/counterstrikesharp/plugins/ && \
 rm ReportDcPlugin.zip && \
 #Admin ESP plugin  
-curl -L https://github.com/kgarri/bg-koka-cs2-xray-esp/releases/download/v1.0.2//AdminESP.tar.gz --output ESP.tar.gz && \
+curl -L https://github.com/kgarri/bg-koka-cs2-xray-esp/releases/download/v1.2.0//AdminESP.tar.gz --output ESP.tar.gz && \
 tar -xzvf ESP.tar.gz -C addons/counterstrikesharp/plugins/ && \
 rm ESP.tar.gz
 

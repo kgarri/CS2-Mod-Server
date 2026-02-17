@@ -53,6 +53,8 @@ else
 	sed -ie '/Game_LowViolence/a\\n\t\t\tGame    csgo/addons/metamod' "$CSGO_DIR/gameinfo.gi"
 fi
 
+execstack -c "$CSGO_DIR/addons/counterstrikesharp/bin/linuxsteamrt64/counterstrikesharp.so"
+
 
 "$LAUNCH_DIR/cs2.sh" +exec autoexec.cfg +exec server.cfg -dedicated -insecure -autoupdate -port 27015 +map de_dust2 +game_alias competitive +exec autoexec.cfg +exec server.cfg
 
